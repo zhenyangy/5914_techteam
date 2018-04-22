@@ -108,7 +108,7 @@ Then you will get responses:
 TensorBoard 1.7.0 at http://Zhenyangs-MacBook-Pro.local:6006 (Press CTRL+C to quit)
 ```
 Now, open a browser and got to http://localhost:6006/. You can then view the graph!
-
+![Alt Text](https://github.com/zhenyangy/5914_techteam/blob/master/tensorboard.gif)
 
 ## Reference
 https://www.tensorflow.org/api_docs/python/tf/Tensor
