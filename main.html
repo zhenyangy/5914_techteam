@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<header>
+  <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+  </style>
+</header>
+
+<body>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="main.html">Tutorial</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+          </ul>
+          <!-- <button class="btn btn-danger navbar-btn">Button</button> -->
+        </div>
+      </nav>
+      <h2 id="tensorflow-introduction">TensorFlow Introduction</h2>
+<p>TensorFlow is an open source Library for doing Complex Numerical Computation to build machine learning models, which is developed by Google Brain team. TensorFlow is written in C++ but is quite user-friendly to python interface. TensorFlow has three main components TensorFlow(API), TensorFlow Serving and TensorBoard. TensorFlow(API) contains the API&#39;s to develop models and to train the models with data. TensorFlow Serving is designed to deploy the models. And TensorBoard is designed to visualize, analyze, and debug machine learning models.
+From my perspective, TensorFlow is currently most popular and powerful framework for building deep learning model.</p>
+<h2 id="install">Install</h2>
+<p>I am now going to introduce how to install TensorFlow on macOS 10.12.6 (Sierra) or higher.
+Right now, the most popular programming language that use TensorFlow is python. Below is a screenshot from github by searching &quot;tensorflow&quot;
+<img src="https://github.com/zhenyangy/5914_techteam/blob/master/1.png" alt=""></p>
+<p>Hence I am going to provide install steps for python with anaconda environment</p>
+<ol>
+<li>install anaconda following the steps here: <a href="https://docs.anaconda.com/anaconda/install/mac-os#macos-graphical-install">anaconda install</a></li>
+<li>Create a conda environment named tensorflow by invoking the following command:<pre><code>$ conda create -n tensorflow pip python=2.7 # or python=3.3, etc.
+</code></pre></li>
+<li>Activate the conda environment by issuing the following command:<pre><code>$ source activate tensorflow
+</code></pre></li>
+<li>Issue a command of the following format to install TensorFlow inside your conda environment:<pre><code>(targetDirectory)$ pip install --ignore-installed --upgrade TF_PYTHON_URL
+</code></pre>where TF_PYTHON_URL is <a href="https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.7.0-py2-none-any.whl">https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.7.0-py2-none-any.whl</a> for python 2.7 or <a href="https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.7.0-py3-none-any.whl">https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.7.0-py3-none-any.whl</a> for python 3.4, 3.5, or 3.6.</li>
+</ol>
+<h2 id="what-to-start">what to start</h2>
+<p>In TensorFlow, the dataset is represented as tensors. so, what is tensor?</p>
+<ul>
+<li>Tensors are the standard way of representing data in TensorFlow</li>
+<li>Tensors are basically multidimensional arrays, an extension of two-dimensional tables(matrices) to data with higher dimensions</li>
+</ul>
+<p>Tensors Rank</p>
+<table>
+<thead>
+<tr>
+<th>rank</th>
+<th style="text-align:center">Math Entity</th>
+<th style="text-align:center">Python Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:center">Scalar (magnitude only)</td>
+<td style="text-align:center">s = 5914</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:center">Vector (magnitude and direction)</td>
+<td style="text-align:center">v = [5, 9, 1, 4]</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">Matrix (table of numbers)</td>
+<td style="text-align:center">m = [[5, 9, 1, 4], [5, 9, 1, 4]]</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">3-Tensor (tube of numbers)</td>
+<td style="text-align:center">t = [[[5], [9]], [[1], [4]]]</td>
+</tr>
+<tr>
+<td>n</td>
+<td style="text-align:center">n-Tensor</td>
+<td style="text-align:center">...</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to the dimensionality, Tensors also have various data type (float32, int32, or string, for example) and in python it is simply </p>
+<pre><code>tf.float32 # or tf.bool, etc.
+</code></pre><p>Now that we have our data as tensors. We need to build something called computational graph for our model.
+The computational graph essentially defines the structure of the model such as neural network. (To get some sense about structure of neural network, you can play around with <a href="https://playground.tensorflow.org/">NN playground</a> Here is a simple example:</p>
+<pre><code>import tensorflow as tf
+
+W = tf.variable([.3], tf.float32)   #weight
+b = tf.variable([-.5], tf.float32)  #bias
+
+x = tf.placeholder(tf.float32)      #input data
+y = tf.placeholder(tf.float32)      #inputdata
+
+model = W * x + b                   #linear model
+
+sqaure_delta = tf.square(model - y) #square error
+loss = tf.reduce_sum(squared_delta) #computes sum
+</code></pre><p>Now, to run this computational graph, we need to run it within a <strong>session</strong>. As the session encapsulates the control and state of the TensorFlow runtime:</p>
+<pre><code>sess = tf.session()
+
+sess.run(tf.global_variables_initializer())
+
+print(sess.run(loss, {x:[1, 2, 3, 4], y:[0, -1, -2, -3]}))
+</code></pre><p>The printed information is the loss of the model when the session ends, which is 0 (why?)</p>
+<h2 id="tensorboard">TensorBoard</h2>
+<p>To visualize the computational graph, you would need to use tensorBoard.</p>
+<pre><code>File_Writer = tf.summary.FileWriter(path, sess.graph)
+</code></pre><p>In our previous code example, it should be:</p>
+<pre><code>import tensorflow as tf
+import os
+
+W = tf.Variable([.3], tf.float32)   #weight
+b = tf.Variable([-.5], tf.float32)  #bias
+
+x = tf.placeholder(tf.float32)      #input data
+y = tf.placeholder(tf.float32)      #inputdata
+
+model = W * x + b                   #linear model
+
+sqaure_delta = tf.square(model - y) #square error
+loss = tf.reduce_sum(sqaure_delta) #computes sum
+
+sess = tf.Session()
+File_Writer = tf.summary.FileWriter(os.getcwd(), sess.graph)
+sess.run(tf.global_variables_initializer())
+
+print(sess.run(loss, {x:[1, 2, 3, 4], y:[0, -1, -2, -3]}))
+</code></pre><p>Then, in terminal, go to the parent directory of the directory that contains the graph file, input following command:</p>
+<pre><code>tensorboard --logdir=&#39;parent dir&#39;
+</code></pre><p>Then you will get responses:</p>
+<pre><code>TensorBoard 1.7.0 at http://Zhenyangs-MacBook-Pro.local:6006 (Press CTRL+C to quit)
+</code></pre><p>Now, open a browser and got to <a href="http://localhost:6006/">http://localhost:6006/</a>. You can then view the graph!
+<img src="https://github.com/zhenyangy/5914_techteam/blob/master/tensorboard.gif" alt="Alt Text"></p>
+<h2 id="reference">Reference</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/Tensor">https://www.tensorflow.org/api_docs/python/tf/Tensor</a></p>
+<p><a href="https://playground.tensorflow.org/">https://playground.tensorflow.org/</a></p>
+  </div>
+
+
+</body>
+
+</html>

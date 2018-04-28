@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        h2{
+          color: blue;
+        }
+        #main-content {
+          margin-top:50px;
+          margin-left:100px;
+        } 
+    </style>
+  </head>
+
+  <body>
+    <!-- navigation bars -->
+    <div>
+     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="main.html">Tutorial</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- The main content -->
+    <div ID="main-content">
+    <script type="text/javascript" src="quiz.js"></script>
+
+    <h2>Short Quiz</h2>
+what is tensorFlow?
+<FORM method="POST" onSubmit="return checkAnswer(this,'C');">
+ <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+ A. A programming language for AI<BR>
+ <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+ B. A scripting language mostly for the web<BR>
+ <INPUT TYPE="RADIO" VALUE="C" NAME="cc">
+ C. A popular framework for building deep learning model.<BR>
+ <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+ </FORM>
+ <p></p>
+ <p></p>
+ what data type can be used to represent data in tensorFlow?
+ <FORM method="POST" onSubmit="return checkAnswer(this,'C');">
+ <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+ A. array<BR>
+ <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+ B. dictionary<BR>
+ <INPUT TYPE="RADIO" VALUE="C" NAME="cc">
+ C. tensor<BR>
+ <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+ </FORM>
+ <p></p>
+ <p></p>
+ what is the rank of tensor that represent a matrix?
+ <FORM method="POST" onSubmit="return checkAnswer(this,'B');">
+ <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+ A. 1<BR>
+ <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+ B. 2<BR>
+ <INPUT TYPE="RADIO" VALUE="C" NAME="cc">
+ C. 3<BR>
+ <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+ </FORM>
+ <p></p>
+ <p></p>
+ which data type tensor does NOT have?
+ <FORM method="POST" onSubmit="return checkAnswer(this,'D');">
+ <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+ A. int<BR>
+ <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+ B. string<BR>
+ <INPUT TYPE="RADIO" VALUE="C" NAME="cc">
+ C. boolean<BR>
+ <INPUT TYPE="RADIO" VALUE="D" NAME="cc">
+ D. tensor have all above data type<BR>
+ <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+ </FORM>
+ <p></p>
+ <p></p>
+ True or False, when you built a model, tensorFlow won't do any computation until you create a sessoin for the model?
+ <FORM method="POST" onSubmit="return checkAnswer(this,'A');">
+ <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+ A. true<BR>
+ <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+ B. false<BR>
+ <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+ </FORM>
+ <p></p>
+ <p></p>
+ why does the example code in tutorial prints 0?
+ <FORM method="POST" onSubmit="return checkAnswer(this,'B');">
+ <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+ A. 0 is the message code meaning the session is finished<BR>
+ <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+ B. 0 is the loss of the model when the session finished<BR>
+ <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+ </FORM>
+ <p></p>
+ <p></p>
+ Can I build a model without codes using tensorBoard?
+ <FORM method="POST" onSubmit="return checkAnswer(this,'B');">
+ <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+ A. Yes, We can create a computational graph in tensorBoard<BR>
+ <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+ B. No, tensorBoard is only used to visualize the model in your code<BR>
+ <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+ </FORM>
+
+    </div>
+    
+
+  </body>
+
+
+</html>
